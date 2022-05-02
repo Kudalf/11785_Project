@@ -1,4 +1,5 @@
-# GTS
+# Improved GTS model and application on Amazon Review Data
+
 [Grid Tagging Scheme for Aspect-oriented Fine-grained Opinion Extraction](https://arxiv.org/pdf/2010.04640.pdf). Zhen Wu, Chengcan Ying, Fei Zhao, Zhifang Fan, Xinyu Dai, Rui Xia. In Findings of EMNLP, 2020.
 
 ## Data
