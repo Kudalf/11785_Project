@@ -127,7 +127,7 @@ if __name__ == '__main__':
                         help='option: pair, triplet')
     parser.add_argument('--mode', type=str, default="train", choices=["train", "test"],
                         help='option: train, test')
-    parser.add_argument('--dataset', type=str, default="res14", choices=["res14", "lap14", "res15", "res16", "neg_pos_concat"],
+    parser.add_argument('--dataset', type=str, default="res14", choices=["res14", "lap14", "res15", "res16", "neg_pos_concat", "lap14_concat_syn", "amazon_lap14_full_synonym"],
                         help='dataset')
     parser.add_argument('--max_sequence_len', type=int, default=200,
                         help='max length of a sentence')

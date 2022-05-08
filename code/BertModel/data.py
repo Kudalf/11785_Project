@@ -2,7 +2,7 @@ import math
 
 import torch
 import numpy as np
-from transformers import BertTokenizer, RobertaTokenizer, DistilBertTokenizer, DistilBertModel, AutoModel, AutoTokenizer 
+from transformers import BertTokenizer, RobertaTokenizer, DistilBertTokenizer, DistilBertModel, AutoModel, AutoTokenizer, RobertaTokenizerFast
 sentiment2id = {'negative': 3, 'neutral': 4, 'positive': 5}
 
 
@@ -66,13 +66,55 @@ class Instance(object):
         for i in range(self.length):
             self.bert_tokens_padding[i] = self.bert_tokens[i]
         self.mask[:self.length] = 1
+        if args.bert_model_path != "roberta-base":
 
-        token_start = 1
-        for i, w, in enumerate(self.tokens):
+          token_start = 1
+          for i, w, in enumerate(self.tokens):
             token_end = token_start + len(tokenizer.encode(w, add_special_tokens=False))
             self.token_range.append([token_start, token_end-1])
             token_start = token_end
-        assert self.length == self.token_range[-1][-1]+2
+          assert self.length == self.token_range[-1][-1]+2
+        elif args.bert_model_path == "roberta-base":
+          encodings = tokenizer(self.sentence, return_offsets_mapping=True)
+        
+        running_str = ""
+        start = 1
+        end = 1
+        #Ġ
+        
+        decoded = tokenizer.convert_ids_to_tokens(self.bert_tokens, skip_special_tokens=False)
+        decoded = decoded[1:-1]
+        
+        idx = 0
+        for tok in self.tokens:
+            for i in range(idx, len(decoded)):
+                
+                code = decoded[i]
+                if code[0] == 'Ġ':
+                    code = code[1:]
+                
+                #pdb.set_trace()
+                running_str += code
+               
+                if running_str == tok:
+                    
+                    current_range = [start, end]
+                    
+                    self.token_range.append(current_range)
+                    
+                    running_str = ""
+                    end += 1
+                    start = end
+                    
+                    idx = i + 1
+                    
+                    break
+                
+            
+                else:
+                    
+                    end += 1
+                    idx = i + 1
 
         self.aspect_tags[self.length:] = -1
         self.aspect_tags[0] = -1
@@ -148,7 +190,7 @@ def load_data_instances(sentence_packs, args):
 
     
     if args.bert_tokenizer_path == "roberta-base":
-      tokenizer = RobertaTokenizer.from_pretrained(args.bert_tokenizer_path)
+      tokenizer = RobertaTokenizerFast.from_pretrained(args.bert_tokenizer_path)
     elif args.bert_tokenizer_path == "bert-base-uncased":
       tokenizer = BertTokenizer.from_pretrained(args.bert_tokenizer_path)
     elif args.bert_tokenizer_path == "distilbert-base-uncased":

@@ -19,8 +19,6 @@ class MultiInferBert(torch.nn.Module):
           self.bert = DistilBertModel.from_pretrained('distilbert-base-uncased')
         elif self.args.bert_model_path == 'vinai/bertweet-base':
           self.bert = AutoModel.from_pretrained('vinai/bertweet-base')
-        elif self.args.bert_model_path == 'vinai/bertweet-large':
-          self.bert = AutoModel.from_pretrained('vinai/bertweet-large')
 
 
         # tokenizer
@@ -31,9 +29,7 @@ class MultiInferBert(torch.nn.Module):
         elif self.args.bert_tokenizer_path == 'distilbert-base-uncased':
           self.tokenizer = DistilBertTokenizer.from_pretrained('distilbert-base-uncased')
         elif self.args.bert_tokenizer_path == 'vinai/bertweet-base':
-          self.tokenizer = AutoTokenizer.from_pretrained('vinai/bertweet-base')
-        elif self.args.bert_tokenizer_path == 'vinai/bertweet-large':
-          self.tokenizer = AutoTokenizer.from_pretrained('vinai/bertweet-large')
+          self.tokenizer = AutoTokenizer.from_pretrained('vinai/bertweet-base', use_fast=False)
 
         self.cls_linear = torch.nn.Linear(args.bert_feature_dim*2, args.class_num)
         self.feature_linear = torch.nn.Linear(args.bert_feature_dim*2 + args.class_num*3, args.bert_feature_dim*2)
