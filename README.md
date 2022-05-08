@@ -210,44 +210,6 @@ GTS performance on [ASTE-Data-V2 datasets](https://arxiv.org/pdf/2010.02609.pdf)
 	</tr>
 </table>
     
-## Citation
-If you used the datasets or code, please cite our paper:
-```bibtex
-@inproceedings{wu-etal-2020-grid,
-    title = "Grid Tagging Scheme for Aspect-oriented Fine-grained Opinion Extraction",
-    author = "Wu, Zhen  and
-      Ying, Chengcan  and
-      Zhao, Fei  and
-      Fan, Zhifang  and
-      Dai, Xinyu  and
-      Xia, Rui",
-    booktitle = "Findings of the Association for Computational Linguistics: EMNLP 2020",
-    month = nov,
-    year = "2020",
-    address = "Online",
-    publisher = "Association for Computational Linguistics",
-    url = "https://www.aclweb.org/anthology/2020.findings-emnlp.234",
-    doi = "10.18653/v1/2020.findings-emnlp.234",
-    pages = "2576--2585",
-}
-```
-```bibtex
-@inproceedings{fan-etal-2019-target,
-    title = "Target-oriented Opinion Words Extraction with Target-fused Neural Sequence Labeling",
-    author = "Fan, Zhifang  and
-      Wu, Zhen  and
-      Dai, Xin-Yu  and
-      Huang, Shujian  and
-      Chen, Jiajun",
-    booktitle = "Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers)",
-    month = jun,
-    year = "2019",
-    address = "Minneapolis, Minnesota",
-    publisher = "Association for Computational Linguistics",
-    url = "https://www.aclweb.org/anthology/N19-1259",
-    doi = "10.18653/v1/N19-1259",
-    pages = "2509--2518",
-}
 ```
 
 ## Reference
