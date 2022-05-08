@@ -47,70 +47,46 @@ The error analysis code is in the file code/BertModel/Error_Analysis.py.
 
 <table>
 	<tr>
-	    <th rowspan="2">Methods</th>
-	    <th colspan="3">14res</th>
-	    <th colspan="3">14lap</th>
-      <th colspan="3">15res</th>
-      <th colspan="3">16res</th>  
+	    <th colspan="1">Models</th>
+        <th colspan="1">Dataset</th>
+	    <th colspan="1">Precision</th>
+	    <th colspan="1">Recall</th>
+      <th colspan="1">F1</th> 
 	</tr >
-  <tr >
-	    <th>P</th>
-	    <th>R</th>
-	    <th>F1</th>
-      <th>P</th>
-	    <th>R</th>
-	    <th>F1</th>
-      <th>P</th>
-	    <th>R</th>
-	    <th>F1</th>
-      <th>P</th>
-	    <th>R</th>
-	    <th>F1</th>
-	</tr>
 	<tr >
-	    <td>GTS-CNN</td>
-	    <td>74.13</td>
-	    <td>69.49</td>
-      <td>71.74</td>
-      <td>68.33</td>
-      <td>55.04</td>
-      <td>60.97</td>
-      <td>66.81</td>
-      <td>61.34</td>
-      <td>63.96</td>
-      <td>70.48</td>
-      <td>72.39</td>
-      <td>71.42</td>
+	    <td>GTS-BERT (baseline)</td>
+	    <td>lap14</td>
+	    <td>57.52</td>
+      <td>51.92</td>
+      <td>54.58</td>
+	</tr>
+    <tr >
+	    <td>GTS-BERTweet</td>
+	    <td>lap14</td>
+	    <td>57.66</td>
+      <td>57.98</td>
+      <td>57.82</td>
 	</tr>
   <tr >
-	    <td>GTS-BiLSTM</td>
-	    <td>71.32</td>
-	    <td>67.07</td>
-      <td>69.13</td>
-      <td>61.53</td>
-      <td>54.31</td>
-      <td>57.69</td>
-      <td>67.76</td>
-      <td>63.19</td>
-      <td>65.39</td>
-      <td>70.32</td>
-      <td>70.46</td>
-      <td>70.39</td>
+	    <td>GTS-BERT + Augmented Data </td>
+	    <td>lap14</td>
+	    <td>62.12</td>
+      <td>53.95</td>
+      <td>57.75</td>
 	</tr>
-  <tr >
-	    <td>GTS-BERT</td>
-	    <td>76.23</td>
-	    <td>74.84</td>
-      <td>75.53</td>
-      <td>66.41</td>
-      <td>64.95</td>
-      <td>65.67</td>
-      <td>66.40</td>
-      <td>68.71</td>
-      <td>67.53</td>
-      <td>71.70</td>
-      <td>77.79</td>
-      <td>74.62</td>
+   <tr >
+	    <td>GTS-RoBERTa </td>
+	    <td>lap14</td>
+	    <td> 59.51</td>
+      <td>62.57</td>
+      <td>61.00</td>
+	</tr>
+     <tr >
+	    <td><b>GTS-RoBERTa + Augmented Data</b></td>
+	    <td>lap14</td>
+	    <td> 61.06</td>
+      <td> 59.27</td>
+      <td><b>61.15</b></td>
 	</tr>
 </table>
 
