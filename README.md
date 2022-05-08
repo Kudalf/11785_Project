@@ -27,17 +27,17 @@ python main.py --task triplet --mode train --dataset lap14_concat_syn --bert_mod
 ```
 Arguments
 - dataset
- - lap14: laptop reviews
- - res14: restaurant reviews
- - res15: restaurant reviews
- - res16: restaurant reviews
- - neg_pos_concat: lap14 data with positve and negative sentences concatenated
- - lap14_concat_syn: lap14 data with positve and negative sentences concatenated and synonym replacement
- - amazon_lap14_full_synonym: lap14 data with positve and negative sentences concatenated and synonym replacement + pseudo labels generated from Amazon data
+	- lap14: laptop reviews
+ 	- res14: restaurant reviews
+ 	- res15: restaurant reviews
+ 	- res16: restaurant reviews
+ 	- neg_pos_concat: lap14 data with positve and negative sentences concatenated
+ 	- lap14_concat_syn: lap14 data with positve and negative sentences concatenated and synonym replacement
+ 	- amazon_lap14_full_synonym: lap14 data with positve and negative sentences concatenated and synonym replacement + pseudo labels generated from Amazon data
 - bert_model_path and bert_tokenizer_path: Encoders and its correspoding tokenizer
- - roberta-base: [RoBERTa](https://huggingface.co/roberta-base)
- - bert-base-uncased: [BERT](https://huggingface.co/bert-base-uncased)
- - vinai/bertweet-base: [BERTweet](https://huggingface.co/vinai/bertweet-base)
+ 	- roberta-base: [RoBERTa](https://huggingface.co/roberta-base)
+ 	- bert-base-uncased: [BERT](https://huggingface.co/bert-base-uncased)
+ 	- vinai/bertweet-base: [BERTweet](https://huggingface.co/vinai/bertweet-base)
 The best model will be saved in the folder "savemodel/".
 
 - ### Error Analysis
@@ -114,115 +114,6 @@ The error analysis code is in the file code/BertModel/Error_Analysis.py.
 	</tr>
 </table>
 
-GTS performance on [opinion triplet extraction (OTE) datasets](https://github.com/NJUNLP/GTS/tree/main/data):
-<table>
-	<tr>
-	    <th rowspan="2">Methods</th>
-	    <th colspan="3">14res</th>
-	    <th colspan="3">14lap</th>
-      <th colspan="3">15res</th>
-      <th colspan="3">16res</th>  
-	</tr >
-  <tr >
-	    <th>P</th>
-	    <th>R</th>
-	    <th>F1</th>
-      <th>P</th>
-	    <th>R</th>
-	    <th>F1</th>
-      <th>P</th>
-	    <th>R</th>
-	    <th>F1</th>
-      <th>P</th>
-	    <th>R</th>
-	    <th>F1</th>
-	</tr>
-	<tr >
-	  <td>GTS-CNN</td>
-	  <td>70.79</td>
-	  <td>61.71</td>
-      <td>65.94</td>
-      <td>55.93</td>
-      <td>47.52</td>
-      <td>51.38</td>
-      <td>60.09</td>
-      <td>53.57</td>
-      <td>56.64</td>
-      <td>62.63</td>
-      <td>66.98</td>
-      <td>64.73</td>
-	</tr>
-  <tr >
-	  <td>GTS-BiLSTM</td>
-	  <td>67.28</td>
-	  <td>61.91</td>
-      <td>64.49</td>
-      <td>59.42</td>
-      <td>45.13</td>
-      <td>51.30</td>
-      <td>63.26</td>
-      <td>50.71</td>
-      <td>56.29</td>
-      <td>66.07</td>
-      <td>65.05</td>
-      <td>65.56</td>
-	</tr>
-  <tr >
-	  <td>GTS-BERT</td>
-	  <td>70.92</td>
-	  <td>69.49</td>
-      <td>70.20</td>
-      <td>57.52</td>
-      <td>51.92</td>
-      <td>54.58</td>
-      <td>59.29</td>
-      <td>58.07</td>
-      <td>58.67</td>
-      <td>68.58</td>
-      <td>66.60</td>
-      <td>67.58</td>
-	</tr>
-</table>
-
-GTS performance on [ASTE-Data-V2 datasets](https://arxiv.org/pdf/2010.02609.pdf):
-<table>
-	<tr>
-	    <th rowspan="2">Methods</th>
-	    <th colspan="3">14res</th>
-	    <th colspan="3">14lap</th>
-      <th colspan="3">15res</th>
-      <th colspan="3">16res</th>  
-	</tr >
-  <tr >
-	    <th>P</th>
-	    <th>R</th>
-	    <th>F1</th>
-      <th>P</th>
-	    <th>R</th>
-	    <th>F1</th>
-      <th>P</th>
-	    <th>R</th>
-	    <th>F1</th>
-      <th>P</th>
-	    <th>R</th>
-	    <th>F1</th>
-	</tr>
-	<tr >
-	  <td>GTS-BERT</td>
-	  <td>68.71</td>
-	  <td>67.67</td>
-      <td>68.17</td>
-      <td>58.54</td>
-      <td>50.65</td>
-      <td>54.30</td>
-      <td>60.69</td>
-      <td>60.54</td>
-      <td>60.61</td>
-      <td>67.39</td>
-      <td>66.73</td>
-      <td>67.06</td>
-	</tr>
-</table>
     
 ```
 
