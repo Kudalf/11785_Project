@@ -13,6 +13,13 @@ used for training and 332 for testing (evaluation).
 ### Amazon Data
 [Amazon review dataset](https://nijianmo.github.io/amazon/index.html) is an unlabeled dataset which contains product reviews and metadata from Amazon, including 233.1 million reviews spanning May 1996 - Oct 2018. This dataset includes reviews (ratings, text, helpfulness votes), product metadata (descriptions, category information, price, brand, and image features), and links (also viewed/also bought graphs). We've selected the subcategory "Electronics" for our data augmentation and further application, including 5000 sentences.
 
+### Data Augmentation Files
+There are three py files in the "data/Data Augmentation" file. Each is for one of our three data augmentation methods.
+For 'Self-training', we used the amazon dataset and generated pseudo label for it then output it in json format.
+For 'Synonym Replacement', we used the nlpaug package to randomly replace some words in the sentence with their synonyms.
+For 'Sentence Concatenation', we concatenated the sentences with opposite sentiment (the labels are also concatenated).
+Self-training method is designed for the format of amazon dataset. Synonym Replacement and Sentence Concatenation' are designed for the lap14 dataset.
+
 ## Requirements
 See requirement.txt or Pipfile for details
 * pytorch==1.7.1
