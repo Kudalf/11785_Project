@@ -1,11 +1,17 @@
 # Improved GTS model and application on Amazon Review Data
+Information Extraction from text is extremely useful for decision-making based on large datasets such as product reviews. Aspect-oriented Fine-grained Opinion Extraction (AFOE) aims to automatically extract opinion pairs (aspect term, opinion term) or opinion triplets (aspect term, opinion term, sentiment) from review text. While pipeline approaches may suffer from error propagation and inconvenience in real-world scenarios, the combination of a pre-trained encoder with a Grid Tagging decoder can turn this work into a unified and generalized task. The GTS model is first proposed by this paper: [Grid Tagging Scheme for Aspect-oriented Fine-grained Opinion Extraction](https://arxiv.org/pdf/2010.04640.pdf). Zhen Wu, Chengcan Ying, Fei Zhao, Zhifang Fan, Xinyu Dai, Rui Xia. In Findings of EMNLP, 2020. To further reduce the GTS model’s error on triplet extraction, we have performed error analysis and experimented with different encoders and data augmentation techniques, which improved the F1 score by 6.
 
-[Grid Tagging Scheme for Aspect-oriented Fine-grained Opinion Extraction](https://arxiv.org/pdf/2010.04640.pdf). Zhen Wu, Chengcan Ying, Fei Zhao, Zhifang Fan, Xinyu Dai, Rui Xia. In Findings of EMNLP, 2020.
+![image](https://user-images.githubusercontent.com/40879931/167280162-efbd7ace-70bc-400f-9011-077fb31b1d4a.png)
+
+
 
 ## Data
-**❗Note: Our opinion triplet datasets are completely from alignments of our previous work [TOWE](https://www.aclweb.org/anthology/N19-1259/) datasets and the original SemEval [2014](https://www.aclweb.org/anthology/S14-2004/), [2015](https://www.aclweb.org/anthology/S15-2082/), [2016](https://www.aclweb.org/anthology/S16-1002/) datasets. GTS datasets contain the cases of one aspect term corresponding to multiple opinion terms and one opinion term corresponding to multiple aspect terms.**
+### Lap 14 
+Target-opinion-sentiment triplet datasets are completely from alignments of this paper [TOWE](https://www.aclweb.org/anthology/N19-1259/). It contains English sentences extracted from laptop custumer reviews. Human annotators tagged the aspect terms (SB1) and their polarities (SB2); 899 sentences and 1264 triplets were
+used for training and 332 for testing (evaluation).
 
-[[Data](https://github.com/NJUNLP/GTS/tree/main/data)]   [[Pre-trained Model](https://drive.google.com/drive/folders/15HZun7FeObpNaJF1gwrJxn2H6e28LPZY?usp=sharing)(from huggingface)]. Data format descriptions are [here](https://github.com/NJUNLP/GTS/blob/main/data/datareadme.md).
+### Amazon Data
+[Amazon review dataset](https://nijianmo.github.io/amazon/index.html) is an unlabeled dataset which contains product reviews and metadata from Amazon, including 233.1 million reviews spanning May 1996 - Oct 2018. This dataset includes reviews (ratings, text, helpfulness votes), product metadata (descriptions, category information, price, brand, and image features), and links (also viewed/also bought graphs). We've selected the subcategory "Electronics" for our data augmentation and further application, including 5000 sentences.
 
 ## Requirements
 See requirement.txt or Pipfile for details
@@ -15,22 +21,30 @@ See requirement.txt or Pipfile for details
 
 ## Usage
 - ### Training
-For example, you can use the folowing command to fine-tune Bert on the OPE task (the pre-trained Bert model is saved in the folder "pretrained/"):
+The training process is included in the file code/BertModel/Train Project Model.ipynb.
 ```
-python main.py --task pair --mode train --dataset res14
+python main.py --task triplet --mode train --dataset lap14_concat_syn --bert_model_path bert-base-uncased --bert_tokenizer_path bert-base-uncased --batch_size 8
 ```
+Arguments
+- dataset
+ - lap14: laptop reviews
+ - res14: restaurant reviews
+ - res15: restaurant reviews
+ - res16: restaurant reviews
+ - neg_pos_concat: lap14 data with positve and negative sentences concatenated
+ - lap14_concat_syn: lap14 data with positve and negative sentences concatenated and synonym replacement
+ - amazon_lap14_full_synonym: lap14 data with positve and negative sentences concatenated and synonym replacement + pseudo labels generated from Amazon data
+- bert_model_path and bert_tokenizer_path: Encoders and its correspoding tokenizer
+ - roberta-base: [RoBERTa](https://huggingface.co/roberta-base)
+ - bert-base-uncased: [BERT](https://huggingface.co/bert-base-uncased)
+ - vinai/bertweet-base: [BERTweet](https://huggingface.co/vinai/bertweet-base)
 The best model will be saved in the folder "savemodel/".
 
-- ### Testing
-For example, you can use the folowing command to test Bert on the OPE task:
-```
-python main.py --task pair --mode test --dataset res14
-```
-
-**Note**: In our pre-experiments, a smaller batch size and learning rate can achieve better performance on certain datasets, while we use a general setting in our paper to save time instead of adopting grid search.
+- ### Error Analysis
+The error analysis code is in the file code/BertModel/Error_Analysis.py.
 
 # Results
-GTS performance on [opinion pair extraction (OPE) datasets](https://github.com/NJUNLP/GTS/tree/main/data):
+
 <table>
 	<tr>
 	    <th rowspan="2">Methods</th>
