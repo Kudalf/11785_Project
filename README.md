@@ -15,9 +15,13 @@ used for training and 332 for testing (evaluation).
 
 ### Data Augmentation Files
 There are three py files in the "data/Data Augmentation" file. Each is for one of our three data augmentation methods.
+
 For 'Self-training', we used the amazon dataset and generated pseudo label for it then output it in json format.
+
 For 'Synonym Replacement', we used the nlpaug package to randomly replace some words in the sentence with their synonyms.
+
 For 'Sentence Concatenation', we concatenated the sentences with opposite sentiment (the labels are also concatenated).
+
 Self-training method is designed for the format of amazon dataset. Synonym Replacement and Sentence Concatenation' are designed for the lap14 dataset.
 
 ## Requirements
